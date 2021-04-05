@@ -22,7 +22,7 @@
             </TextView>
 
             <TextView
-                android:id="@+id/tv_total"
+                android:id="@+id/tv_total_recyvle"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_width="match_parent"

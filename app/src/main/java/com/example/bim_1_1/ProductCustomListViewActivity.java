@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.bim_1_1.model.BasketAdapter;
 import com.example.bim_1_1.model.ProdcutAdapter;
 import com.example.bim_1_1.model.Product;
+import com.example.bim_1_1.model.ProductRepo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.List;
 public class ProductCustomListViewActivity extends AppCompatActivity {
 
     List<Product> productList;
-    List<Product> basketList;
+    ArrayList<Product> basketList;
     ListView lvProdcut;
     Button cartBtn;
 
@@ -34,16 +35,9 @@ public class ProductCustomListViewActivity extends AppCompatActivity {
         lvProdcut = findViewById(R.id.lvProducts);
         cartBtn = findViewById(R.id.cartBtn);
         productList = new ArrayList<>();
-        basketList = new ArrayList<>();
-        BasketAdapter cart = new BasketAdapter(this,R.layout.listview_basket,basketList);
-        productList.add(new Product("Laptop", 3500, R.drawable.ic_launcher_background, 45, "Shoes", "Perfect Stuff"));
-        productList.add(new Product("shoes", 3500, R.drawable.ic_launcher_background, 45, "Shoes", "Perfect Stuff"));
-        productList.add(new Product("laptop3 ", 3500, R.drawable.ic_launcher_background, 45, "Dress", "Perfect Stuff"));
-        productList.add(new Product("Cumo", 3500, R.drawable.ic_launcher_background, 45, "Something", "Perfect Stuff"));
-        productList.add(new Product("Benja", 3500, R.drawable.ic_launcher_background, 45, "Shoes", "Perfect Stuff"));
-        productList.add(new Product("Siphora", 3500, R.drawable.ic_launcher_background, 45, "DOC", "Perfect Stuff"));
-        productList.add(new Product("UTC", 3500, R.drawable.ic_launcher_background, 45, "phone", "Perfect Stuff"));
-        productList.add(new Product("Laptop", 3500, R.drawable.ic_launcher_background, 45, "Shoes", "Perfect Stuff"));
+        basketList = ProductRepo.getProducts();
+        BasketAdapter cart = new BasketAdapter(this,R.layout.listview_basket,basketList );
+
         cartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

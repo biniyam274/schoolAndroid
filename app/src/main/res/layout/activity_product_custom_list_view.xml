@@ -12,7 +12,10 @@
         android:id="@+id/cartBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cart"
+        android:text="0"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:background="@drawable/ic_basket_foreground"
         />
 
 
@@ -23,5 +26,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        />
 </LinearLayout>

@@ -1,23 +1,44 @@
 package com.example.bim_1_1.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class Product  implements Serializable {
+public class Product implements  Serializable {
     String Name;
     float Price;
     int Image;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    int id;
     int Quantity;
     String Category;
     String Description;
+    Integer AmtInStock;
 
-    public Product(String name, float price, int image, int quantity, String category, String description) {
+    public Product() {
+
+    }
+
+    public Product(String name, float price, int image, int quantity, String category, String description,int id) {
         Name = name;
         Price = price;
         Image = image;
         Quantity = quantity;
         Category = category;
         Description = description;
+        id = id;
+       AmtInStock = 0;
     }
+
 
     public String getName() {
         return Name;
@@ -37,6 +58,10 @@ public class Product  implements Serializable {
 
     public int getImage() {
         return Image;
+    }
+
+    public void setImage(int image) {
+        Image = image;
     }
 
     public int getQuantity() {
@@ -63,7 +88,12 @@ public class Product  implements Serializable {
         Description = description;
     }
 
-    public void setImage(int image) {
-        Image = image;
+    public Integer getAmtInStock() {
+        return AmtInStock;
     }
+
+    public void setAmtInStock(Integer amtInStock) {
+       AmtInStock = amtInStock;
+    }
+
 }

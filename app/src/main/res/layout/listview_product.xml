@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivImage"
@@ -44,12 +44,24 @@
         app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
 
+    <TextView
+        android:id="@+id/tvStock"
+        android:layout_width="79dp"
+        android:layout_height="37dp"
+        android:gravity="center"
+        android:text="Amt In Stock"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDetails"
+        app:layout_constraintStart_toEndOf="@+id/ivImage"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductPrice" />
+
     <Button
         android:id="@+id/btnDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="Details"
+        android:text="Detail"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="@+id/btnAdd"
         app:layout_constraintStart_toEndOf="@+id/ivImage"
@@ -58,7 +70,6 @@
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/btnProductAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnDetails"

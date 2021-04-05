@@ -56,6 +56,7 @@ public class ProdcutAdapter extends ArrayAdapter<Product> {
         ImageView ivImage = (ImageView) view.findViewById(R.id.ivImage);
         TextView tvProductName = (TextView) view.findViewById(R.id.tvProductName);
         TextView tvProductPrice = (TextView) view.findViewById(R.id.tvProductPrice);
+        TextView tvStock = (TextView) view.findViewById(R.id.tvStock);
         Button btnAdd = (Button) view.findViewById(R.id.btnAdd);
         Button btnDetails = (Button) view.findViewById(R.id.btnDetails);
 
@@ -63,12 +64,18 @@ public class ProdcutAdapter extends ArrayAdapter<Product> {
         ivImage.setImageDrawable(context.getResources().getDrawable(product.getImage(),null));
         tvProductName.setText(product.getName());
         tvProductPrice.setText(String.valueOf(product.getPrice()));
+        tvStock.setText("Amt In Stock"+ ":" +(product.getQuantity() - product.getAmtInStock()));
 
         btnDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Product Category :"+product.getCategory() +"'\n Product Description :"+product.getDescription());
+                StringBuilder me = new StringBuilder();
+
+                me.append("Product Name : "+product.getName());
+                me.append("\nProduct Category : "+product.getCategory() +"'\n Product Price :"+product.getPrice());
+                me.append("\nProduct Quantity : "+(product.getQuantity()-product.getAmtInStock()) +"'\n Product Description :"+product.getDescription());
+                builder.setMessage(me);
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
@@ -77,28 +84,19 @@ public class ProdcutAdapter extends ArrayAdapter<Product> {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("Are you sure to Add?");
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(context, "You added one product", Toast.LENGTH_SHORT).show();
-                        bAdapter.add(product);
-                        cartBtn.setText(((Integer)bAdapter.getCount()).toString());
+                if(product.getQuantity()-product.getAmtInStock()>0){
+                    bAdapter.addPro(product);
+                    tvStock.setText("Amt In Stock"+ ":" +(product.getQuantity() - product.getAmtInStock()));
+                    Toast.makeText(context, "One product added", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(context, "Product is out of stoc", Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+                }
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(context, "Oh NOOOOO", Toast.LENGTH_SHORT).show();
-                    }
-                });
 
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                cartBtn.setText(((Integer)bAdapter.getCount()).toString());
 
             }
         });
